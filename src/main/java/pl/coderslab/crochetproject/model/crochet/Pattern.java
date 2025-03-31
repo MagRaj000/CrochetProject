@@ -19,6 +19,8 @@ public class Pattern {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
+    private String name;
+    @NotNull
     @Lob // large object
     @Column(columnDefinition = "TEXT")
     private String description;
