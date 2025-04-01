@@ -19,15 +19,15 @@ public class UserData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", unique=true)
+    @ManyToOne // multiple UserData records for one user
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "pattern_id", unique=true)
+    @ManyToOne // multiple users (via UserData) can have one pattern
+    @JoinColumn(name = "pattern_id", nullable = false)
     private Pattern pattern;
 
-    @OneToMany
-    @JoinColumn(name = "user_data_id")  // user can add many notes to one pattern
+    @OneToMany // one pattern can have many notes added by one user
+    @JoinColumn(name = "user_data_id")
     private List<Note> notes = new ArrayList<>();
 }
