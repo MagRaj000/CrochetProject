@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class PatternService {
-    private PatternRepository patternRepository;
+    private final PatternRepository patternRepository;
 
     public List<PatternListDTO> getAllPatterns() {
         return patternRepository.findAll().stream()
-                .map(this::convertToListDTO)
+                .map(PatternListDTO::convertToListDTO)
                 .collect(Collectors.toList());
     }
 
@@ -27,18 +27,10 @@ public class PatternService {
             throw new PatternNotFoundException();
         }
         return patterns.stream()
-                .map(this::convertToListDTO)
+                .map(PatternListDTO::convertToListDTO)
                 .collect(Collectors.toList());
     }
 
-
-
-    private PatternListDTO convertToListDTO(Pattern pattern) {
-        PatternListDTO dto = new PatternListDTO();
-        dto.setId(pattern.getId());
-        dto.setName(pattern.getName());
-        return dto;
-    }
 
     private List<Pattern> findPatterns(Long categoryId, Long yarnId, String difficulty) {
         if (categoryId != null && yarnId != null && difficulty != null) {

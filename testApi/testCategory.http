@@ -1,0 +1,6 @@
+###
+GET localhost:8080/categories/all
+###
+###
+GET localhost:8080/categories/5/patterns
+###

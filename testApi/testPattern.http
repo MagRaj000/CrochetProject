@@ -1,15 +1,15 @@
 ###
-GET localhost:8080/pattern/all
+GET localhost:8080/patterns/all
 ###
 ###
-GET localhost:8080/pattern/filtered
+GET localhost:8080/patterns/filtered
 ###
 ###
-GET localhost:8080/pattern/filtered?categoryId=1&yarnId=6&difficulty=intermediate
+GET localhost:8080/patterns/filtered?categoryId=1&yarnId=6&difficulty=intermediate
 ###
 ###
-GET localhost:8080/pattern/filtered?yarnId=5
+GET localhost:8080/patterns/filtered?yarnId=5
 ###
 ###
-GET localhost:8080/pattern/filtered?categoryId=2&difficulty=beginner
+GET localhost:8080/patterns/filtered?categoryId=2&difficulty=beginner
 ###
