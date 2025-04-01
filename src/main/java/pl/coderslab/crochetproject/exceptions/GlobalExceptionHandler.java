@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(PatternNotFoundException.class)
-    public ResponseEntity<String> handlePatternNotFoundException(PatternNotFoundException e) {
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<String> handlePatternNotFoundException(ResourceNotFoundException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 //        return ResponseEntity.status(HttpStatus.NOT_FOUND)
 //                .header("Content-Type", "text/html")

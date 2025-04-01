@@ -3,7 +3,7 @@ package pl.coderslab.crochetproject.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.coderslab.crochetproject.dto.PatternListDTO;
-import pl.coderslab.crochetproject.exceptions.PatternNotFoundException;
+import pl.coderslab.crochetproject.exceptions.ResourceNotFoundException;
 import pl.coderslab.crochetproject.model.crochet.Pattern;
 import pl.coderslab.crochetproject.repository.PatternRepository;
 
@@ -24,7 +24,7 @@ public class PatternService {
     public List<PatternListDTO> getFilteredPatterns(Long categoryId, Long yarnId, String difficulty) {
         List<Pattern> patterns = findPatterns(categoryId, yarnId, difficulty);
         if (patterns.isEmpty()) {
-            throw new PatternNotFoundException();
+            throw new ResourceNotFoundException("No matching patterns were found");
         }
         return patterns.stream()
                 .map(PatternListDTO::convertToListDTO)

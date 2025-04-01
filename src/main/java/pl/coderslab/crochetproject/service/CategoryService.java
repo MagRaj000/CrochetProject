@@ -3,7 +3,7 @@ package pl.coderslab.crochetproject.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.coderslab.crochetproject.dto.PatternListDTO;
-import pl.coderslab.crochetproject.exceptions.PatternNotFoundException;
+import pl.coderslab.crochetproject.exceptions.ResourceNotFoundException;
 import pl.coderslab.crochetproject.model.crochet.Category;
 import pl.coderslab.crochetproject.model.crochet.Pattern;
 import pl.coderslab.crochetproject.repository.CategoryRepository;
@@ -25,7 +25,7 @@ public class CategoryService {
     public List<PatternListDTO> getPatternsByCategoryId(Long categoryId) {
         List<Pattern> patterns = patternRepository.findAllByCategoriesId(categoryId);
         if (patterns.isEmpty()) {
-            throw new PatternNotFoundException();
+            throw new ResourceNotFoundException("Category with id " + categoryId + " not found");
         }
         return patterns.stream()
                 .map(PatternListDTO::convertToListDTO)
