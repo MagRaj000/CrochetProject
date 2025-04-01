@@ -15,4 +15,9 @@ public class GlobalExceptionHandler {
 //                .header("Content-Type", "text/html")
 //                .body("<img src='https://http.cat/404' alt='404 Not Found'>" + e.getMessage());
     }
+
+    @ExceptionHandler(ResourceAlreadyExitsException.class)
+    public ResponseEntity<String> handlePatternAlreadyExitsException(ResourceAlreadyExitsException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+    }
 }
