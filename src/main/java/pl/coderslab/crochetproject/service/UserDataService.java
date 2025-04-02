@@ -61,9 +61,8 @@ public class UserDataService {
         if (userData == null) {
             throw new ResourceNotFoundException("Pattern with id " + patternId + " not found in user's library");
         }
-        Pattern pattern = userData.getPattern();
-        boolean isCompleted = !pattern.isCompleted();
-        pattern.setCompleted(isCompleted);
+        boolean isCompleted = !userData.isCompleted();
+        userData.setCompleted(isCompleted);
         userDataRepository.save(userData);
         return "Pattern was marked as " + (isCompleted ? "completed" : "not completed") + " for this user";
     }

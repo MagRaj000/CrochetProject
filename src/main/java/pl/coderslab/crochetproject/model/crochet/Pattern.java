@@ -26,9 +26,6 @@ public class Pattern {
     private String description;
     @NotNull
     private String difficulty;
-    @NotNull
-    @Column(nullable = false)
-    private boolean completed = false;
 
     @ManyToOne // pattern primary uses one type of yarn
     @JoinColumn(name = "yarn_id")

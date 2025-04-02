@@ -20,5 +20,7 @@ public class Note {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    // unidirectional relationship with UserData
+    @ManyToOne
+    @JoinColumn(name = "user_data_id", nullable = false)
+    private UserData userData;
 }

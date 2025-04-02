@@ -1,6 +1,7 @@
 package pl.coderslab.crochetproject.model.users;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import pl.coderslab.crochetproject.model.crochet.Pattern;
 
@@ -18,6 +19,9 @@ public class UserData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Column(nullable = false)
+    private boolean completed;  // track completion status for each user
 
     @ManyToOne // multiple UserData records for one user
     @JoinColumn(name = "user_id", nullable = false)
@@ -30,4 +34,5 @@ public class UserData {
     @OneToMany // one pattern can have many notes added by one user
     @JoinColumn(name = "user_data_id")
     private List<Note> notes = new ArrayList<>();
+
 }

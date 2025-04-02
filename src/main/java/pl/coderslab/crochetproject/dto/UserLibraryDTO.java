@@ -18,7 +18,7 @@ public class UserLibraryDTO {
     public static UserLibraryDTO convertToUserLibraryDTO(UserData userData) {
         UserLibraryDTO dto = new UserLibraryDTO();
         dto.setId(userData.getId());
-        dto.setPattern(UserPatternListDTO.convertToUserPatternListDTO(userData.getPattern()));
+        dto.setPattern(UserPatternListDTO.convertToUserPatternListDTO(userData));
         dto.setNotes(userData
                 .getNotes()
                 .stream()
