@@ -54,7 +54,7 @@ CREATE TABLE `notes` (
   PRIMARY KEY (`id`),
   KEY `FKsv9amdvldjvik2wr6g8q9ov4l` (`user_data_id`),
   CONSTRAINT `FKsv9amdvldjvik2wr6g8q9ov4l` FOREIGN KEY (`user_data_id`) REFERENCES `user_data` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `notes` (
 
 LOCK TABLES `notes` WRITE;
 /*!40000 ALTER TABLE `notes` DISABLE KEYS */;
-INSERT INTO `notes` VALUES (1,'note1 for pattern1 from user1',1),(2,'note2 for pattern1 from user1',1);
+INSERT INTO `notes` VALUES (1,'updated note1',1),(2,'note2 for pattern1',1),(3,'note for pattern2',2);
 /*!40000 ALTER TABLE `notes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,6 +133,7 @@ DROP TABLE IF EXISTS `user_data`;
 CREATE TABLE `user_data` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `completed` bit(1) NOT NULL,
+  `progress` text,
   `pattern_id` bigint NOT NULL,
   `user_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
@@ -140,7 +141,7 @@ CREATE TABLE `user_data` (
   KEY `FKboeinboxcrb4ilnj0sfyxsbol` (`user_id`),
   CONSTRAINT `FKboeinboxcrb4ilnj0sfyxsbol` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `FKq0k9yc929vxwr8vgiku8yo3tc` FOREIGN KEY (`pattern_id`) REFERENCES `patterns` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +150,7 @@ CREATE TABLE `user_data` (
 
 LOCK TABLES `user_data` WRITE;
 /*!40000 ALTER TABLE `user_data` DISABLE KEYS */;
-INSERT INTO `user_data` VALUES (1,_binary '\0',1,1),(2,_binary '\0',2,1);
+INSERT INTO `user_data` VALUES (1,_binary '\0','[true,true,true,true,false,false,false,false,false,false]',1,1),(2,_binary '\0','[false,false,false,false,false,false,false]',2,1),(3,_binary '\0','[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]',5,1);
 /*!40000 ALTER TABLE `user_data` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-02 11:08:52
+-- Dump completed on 2025-04-02 16:02:10

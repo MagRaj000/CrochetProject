@@ -21,7 +21,10 @@ public class UserData {
     private Long id;
     @NotNull
     @Column(nullable = false)
-    private boolean completed;  // track completion status for each user
+    private boolean completed = false;  // track completion status for each user
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String progress;
 
     @ManyToOne // multiple UserData records for one user
     @JoinColumn(name = "user_id", nullable = false)

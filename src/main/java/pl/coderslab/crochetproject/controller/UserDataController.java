@@ -34,4 +34,14 @@ public class UserDataController {
     public String toggleCompleted(@RequestParam Long userId, @RequestParam Long patternId) {
         return userDataService.toggleCompleted(userId, patternId);
     }
+
+    @GetMapping("/progress/{userId}/{patternId}")
+    public boolean[] getProgress(@PathVariable Long userId, @PathVariable Long patternId) {
+        return userDataService.getProgress(userId, patternId);
+    }
+
+    @PostMapping("/progress/{userId}/{patternId}")
+    public String updateProgress(@PathVariable Long userId, @PathVariable Long patternId, @RequestParam int stepIndex) {
+        return userDataService.updateProgress(userId, patternId, stepIndex);
+    }
 }
