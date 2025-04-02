@@ -23,7 +23,11 @@ public class UserDataService {
     private final PatternRepository patternRepository;
 
     public List<UserLibraryDTO> getUserLibrary(Long userId) {
-        return userDataRepository.findAllDataByUserId(userId).stream()
+        List<UserData> userData = userDataRepository.findAllDataByUserId(userId);
+        if (userData.isEmpty()) {
+            throw new ResourceNotFoundException("User with id " + userId + " not found");
+        }
+        return userData.stream()
                 .map(UserLibraryDTO::convertToUserLibraryDTO)
                 .collect(Collectors.toList());
     }

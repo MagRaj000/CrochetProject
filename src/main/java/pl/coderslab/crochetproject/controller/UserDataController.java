@@ -1,6 +1,7 @@
 package pl.coderslab.crochetproject.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.crochetproject.dto.UserLibraryDTO;
 import pl.coderslab.crochetproject.service.UserDataService;
@@ -18,6 +19,7 @@ public class UserDataController {
         return userDataService.getUserLibrary(id);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/save")
     public String save(@RequestParam Long userId, @RequestParam Long patternId) {
         return userDataService.savePatternToLibrary(userId, patternId);
