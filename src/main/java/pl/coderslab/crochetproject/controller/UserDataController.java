@@ -19,8 +19,17 @@ public class UserDataController {
     }
 
     @PostMapping("/save")
-    public String save(@RequestParam Long userId,
-                     @RequestParam Long patternId) {
+    public String save(@RequestParam Long userId, @RequestParam Long patternId) {
         return userDataService.savePatternToLibrary(userId, patternId);
+    }
+
+    @DeleteMapping("/delete")
+    public String delete(@RequestParam Long userId, @RequestParam Long patternId) {
+        return userDataService.deletePatternFromLibrary(userId, patternId);
+    }
+
+    @PostMapping("/complete")
+    public String toggleCompleted(@RequestParam Long userId, @RequestParam Long patternId) {
+        return userDataService.toggleCompleted(userId, patternId);
     }
 }

@@ -47,5 +47,25 @@ public class UserDataService {
         return "Pattern was successfully added to user's library";
     }
 
+    public String deletePatternFromLibrary(Long userId, Long patternId) {
+        UserData userData = userDataRepository.findByUserIdAndPatternId(userId, patternId);
+        if (userData == null) {
+            throw new ResourceNotFoundException("Pattern with id " + patternId + " not found in user's library");
+        }
+        userDataRepository.delete(userData);
+        return "Pattern was successfully deleted from user's library";
+    }
+
+    public String toggleCompleted(Long userId, Long patternId) {
+        UserData userData = userDataRepository.findByUserIdAndPatternId(userId, patternId);
+        if (userData == null) {
+            throw new ResourceNotFoundException("Pattern with id " + patternId + " not found in user's library");
+        }
+        Pattern pattern = userData.getPattern();
+        boolean isCompleted = !pattern.isCompleted();
+        pattern.setCompleted(isCompleted);
+        userDataRepository.save(userData);
+        return "Pattern was marked as " + (isCompleted ? "completed" : "not completed") + " for this user";
+    }
 
 }

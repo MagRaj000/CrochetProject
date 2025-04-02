@@ -1,3 +1,12 @@
 ###
 GET localhost:8080/userdata/library/1
 ###
+###
+POST localhost:8080/userdata/save?userId=1&patternId=3
+###
+###
+DELETE localhost:8080/userdata/delete?userId=1&patternId=3
+###
+###
+POST localhost:8080/userdata/complete?userId=1&patternId=1
+###
