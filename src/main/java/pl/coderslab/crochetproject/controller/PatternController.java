@@ -12,21 +12,22 @@ import java.util.List;
 @Controller
 @RequestMapping("/patterns")
 @AllArgsConstructor
-//@Transactional
 public class PatternController {
     private final PatternService patternService;
 
-    @GetMapping("/try")
+    @GetMapping("/all")
     public String getPatterns(Model model) {
         model.addAttribute("patterns", patternService.getAllPatterns());
-        return "patterns"; // This refers to the patterns.jsp view
+        return "patterns";
+        //return "header";
+        //return "footer";
     }
 
-    @GetMapping("/all")
-    @ResponseBody
-    public List<PatternListDTO> getAllPatterns() {
-        return patternService.getAllPatterns();
-    }
+//    @GetMapping("/all")
+//    @ResponseBody
+//    public List<PatternListDTO> getAllPatterns() {
+//        return patternService.getAllPatterns();
+//    }
 
     @GetMapping("/filtered")
     public List<PatternListDTO> getFilteredPatterns(@RequestParam(required = false) Long categoryId,
