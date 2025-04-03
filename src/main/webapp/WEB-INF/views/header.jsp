@@ -28,6 +28,33 @@
       background-blend-mode: overlay;
       margin: 0 auto;
     }
+    .btn-save {
+      background-color: #28a745;
+      color: white;
+    }
+    .btn-save:hover {
+      background-color: #218838;
+    }
+    .btn-show {
+      background-color: #4e73df;
+      color: white;
+    }
+    .btn-show:hover {
+      background-color: #0450df;
+    }
+
+    .action-links a:hover {
+      text-decoration: underline;
+      color: white;
+    }
+    .action-links {
+      display: flex;
+      gap: 10px;
+    }
+    .difficulty-stars {
+      margin-left: 10px;
+      color: #e8cc36;
+    }
   </style>
 </head>
 
