@@ -1,23 +1,29 @@
 package pl.coderslab.crochetproject.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.crochetproject.dto.PatternListDTO;
 import pl.coderslab.crochetproject.service.PatternService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/patterns")
 @AllArgsConstructor
 //@Transactional
 public class PatternController {
     private final PatternService patternService;
 
+    @GetMapping("/try")
+    public String getPatterns(Model model) {
+        model.addAttribute("patterns", patternService.getAllPatterns());
+        return "patterns"; // This refers to the patterns.jsp view
+    }
+
     @GetMapping("/all")
+    @ResponseBody
     public List<PatternListDTO> getAllPatterns() {
         return patternService.getAllPatterns();
     }
