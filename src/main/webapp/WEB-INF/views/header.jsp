@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>Crochet Pattern Manager</title>
 
   <!-- Custom fonts for this template-->
   <link href="${pageContext.request.contextPath}/theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -18,6 +18,17 @@
 
   <!-- Custom styles for this template-->
   <link href="${pageContext.request.contextPath}/theme/css/sb-admin-2.css" rel="stylesheet">
+  <style>
+    .custom-navbar {
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(45deg, #4e73df, #86cdf3), url('/static/images/1465324710-clipart-xl.png');
+      background-repeat: no-repeat, repeat;
+      background-size: cover, 50px 50px;
+      background-blend-mode: overlay;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 
 
@@ -30,11 +41,11 @@
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="list">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home">
       <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
       </div>
-      <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+      <div class="sidebar-brand-text mx-3">Crochet Manager</div>
     </a>
 
     <!-- Divider -->
@@ -42,9 +53,9 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-      <a class="nav-link" href="list">
+      <a class="nav-link" href="home">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
+        <span>Home Page</span></a>
     </li>
 
     <!-- Divider -->
@@ -65,5 +76,6 @@
     <div id="content">
 
       <!-- Topbar -->
-      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"></nav>
+<%--      <nav class="navbar navbar-expand navbar-light bg-white mb-4 static-top shadow"></nav>--%>
+      <nav class="navbar navbar-expand navbar-light mb-4 static-top shadow custom-navbar"></nav>
       <!-- End of Topbar -->

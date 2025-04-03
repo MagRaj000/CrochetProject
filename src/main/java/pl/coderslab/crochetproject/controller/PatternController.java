@@ -10,17 +10,21 @@ import pl.coderslab.crochetproject.service.PatternService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/patterns")
+//@RequestMapping("/patterns")
 @AllArgsConstructor
 public class PatternController {
     private final PatternService patternService;
 
-    @GetMapping("/all")
-    public String getPatterns(Model model) {
+    @GetMapping("/home")
+    public String showHomePage(Model model) {
+        model.addAttribute("patterns", patternService.getAllPatterns());
+        return "home";
+    }
+
+    @GetMapping("/patterns/all")
+    public String getAllPatterns(Model model) {
         model.addAttribute("patterns", patternService.getAllPatterns());
         return "patterns";
-        //return "header";
-        //return "footer";
     }
 
 //    @GetMapping("/all")
