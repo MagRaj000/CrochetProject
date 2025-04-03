@@ -31,60 +31,45 @@
             <!-- Content for Browse tab -->
             <p>Browse content goes here...</p>
         </div>
+        <!-- Categories tab -->
         <div class="tab-pane fade" id="categories">
-            <!-- Content for Categories tab -->
-            <p>Categories content goes here...</p>
-        </div>
-        <div class="tab-pane fade" id="all-patterns">
-            <!-- Content for All patterns tab -->
-            <!-- User Table -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">All available patterns</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Categories</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Actions</th>
-                            </tr>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${patterns}" var="pattern">
-                                <tr>
-                                    <td>
-                                            ${pattern.name}
-                                        <span class="difficulty-stars">
-                                        <c:choose>
-                                            <c:when test="${pattern.difficulty == 'beginner'}">
-                                                <i class="fas fa-star"></i>
-                                            </c:when>
-                                            <c:when test="${pattern.difficulty == 'intermediate'}">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                            </c:when>
-                                            <c:when test="${pattern.difficulty == 'experienced'}">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                            </c:when>
-                                        </c:choose>
-                                    </span>
-                                    </td>
-                                    <td class="action-links">
-                                        <a href="save?id=${pattern.id}" class="btn btn-save btn-sm">Save</a>
-                                        <a href="show?id=${pattern.id}" class="btn btn-show btn-sm">Show</a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                                <c:forEach items="${allCategories}" var="category">
+                                    <tr>
+                                        <td>
+                                            <a href="categories/${category.id}/patterns">${category.name}</a>
+                                        </td>
+                                        <td>${category.description}</td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </div>
+        </div>
+            <!-- Placeholder for patterns table -->
+            <div id="category-patterns">
 
+            </div>
+        </div>
+        <!-- All Patterns Tab -->
+        <div class="tab-pane fade" id="all-patterns">
+            <c:set var="title" value="All available patterns" scope="request" />
+            <c:set var="patterns" value="${allPatterns}" scope="request" />
+            <jsp:include page="patterns_table.jsp" />
         </div>
     </div>
 
