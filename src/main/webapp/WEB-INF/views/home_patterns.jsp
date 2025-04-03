@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@ include file="header.jsp" %>
+<%@ include file="templates/header.jsp" %>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -38,11 +38,11 @@
     <div class="tab-pane fade show active" id="all-patterns">
       <c:set var="title" value="${title}" scope="request" />
       <c:set var="patterns" value="${patterns}" scope="request" />
-      <jsp:include page="patterns_table.jsp" />
+      <jsp:include page="templates/patterns_table.jsp" />
     </div>
   </div>
 
 </div>
 <!-- /.container-fluid -->
-<%@ include file="footer.jsp" %>
+<%@ include file="templates/footer.jsp" %>
 

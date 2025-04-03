@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.crochetproject.dto.PatternListDTO;
 import pl.coderslab.crochetproject.exceptions.ResourceNotFoundException;
 import pl.coderslab.crochetproject.model.crochet.Pattern;
+import pl.coderslab.crochetproject.model.crochet.Yarn;
 import pl.coderslab.crochetproject.repository.PatternRepository;
+import pl.coderslab.crochetproject.repository.YarnRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,11 +16,20 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class PatternService {
     private final PatternRepository patternRepository;
+    private final YarnRepository yarnRepository;
 
     public List<PatternListDTO> getAllPatterns() {
         return patternRepository.findAll().stream()
                 .map(PatternListDTO::convertToListDTO)
                 .collect(Collectors.toList());
+    }
+
+    public List<String> getAllDifficulties() {
+        return patternRepository.findDistinctDifficulties();
+    }
+
+    public List<Yarn> getAllYarns() {
+        return yarnRepository.findDistinctYarns();
     }
 
     public List<PatternListDTO> getFilteredPatterns(Long categoryId, Long yarnId, String difficulty) {

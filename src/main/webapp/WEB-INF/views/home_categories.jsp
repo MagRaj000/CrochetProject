@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@ include file="header.jsp" %>
+<%@ include file="templates/header.jsp" %>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -46,7 +46,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${allCategories}" var="category">
+                                <c:forEach items="${categories}" var="category">
                                     <tr>
                                         <td>
                                             <a href="/categories/${category.id}/patterns">${category.name}</a>
@@ -68,6 +68,6 @@
 
 </div>
 <!-- /.container-fluid -->
-<%@ include file="footer.jsp" %>
+<%@ include file="templates/footer.jsp" %>
 
 

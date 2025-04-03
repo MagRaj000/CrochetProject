@@ -15,7 +15,7 @@ public class CategoryController {
 
     @GetMapping("/all")
     public String getAllCategories(Model model) {
-        model.addAttribute("allCategories", categoryService.getAllCategories());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "home_categories";
     }
 
@@ -23,8 +23,7 @@ public class CategoryController {
     public String getPatternsByCategoryId(@PathVariable Long categoryId, Model model) {
         model.addAttribute("patterns", categoryService.getPatternsByCategoryId(categoryId));
         model.addAttribute("title", "Patterns for category: " + categoryService.getCategoryNameFromId(categoryId));
-        model.addAttribute("allCategories", categoryService.getAllCategories());
-        return "category_patterns";
+        return "filtered_category_patterns";
     }
 
 }

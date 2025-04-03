@@ -4,14 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.crochetproject.dto.PatternListDTO;
 import pl.coderslab.crochetproject.service.CategoryService;
 import pl.coderslab.crochetproject.service.PatternService;
 
-import java.util.List;
-
 @Controller
-//@RequestMapping("/patterns")
 @AllArgsConstructor
 public class PatternController {
     private final PatternService patternService;
@@ -19,7 +15,10 @@ public class PatternController {
 
     @GetMapping("/home")
     public String showHomePage(Model model) {
-        return "home1";
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("difficulties", patternService.getAllDifficulties());
+        model.addAttribute("yarns", patternService.getAllYarns());
+        return "home_form";
     }
 
     @GetMapping("/patterns/all")
@@ -29,16 +28,15 @@ public class PatternController {
         return "home_patterns";
     }
 
-//    @GetMapping("/all")
-//    @ResponseBody
-//    public List<PatternListDTO> getAllPatterns() {
-//        return patternService.getAllPatterns();
-//    }
-
-    @GetMapping("/filtered")
-    public List<PatternListDTO> getFilteredPatterns(@RequestParam(required = false) Long categoryId,
+    @PostMapping("/patterns/filtered")
+    public String getFilteredPatterns(@RequestParam(required = false) Long categoryId,
                                                     @RequestParam(required = false) Long yarnId,
-                                                    @RequestParam(required = false) String difficulty) {
-        return patternService.getFilteredPatterns(categoryId, yarnId, difficulty);
+                                                    @RequestParam(required = false) String difficulty,
+                                                    Model model) {
+        // convert empty String to null by hand here (or the filtering does not work)
+        if (difficulty.isEmpty()) difficulty = null;
+        model.addAttribute("patterns", patternService.getFilteredPatterns(categoryId, yarnId, difficulty));
+        model.addAttribute("title", "All matching patterns");
+        return "filtered_patterns";
     }
 }
