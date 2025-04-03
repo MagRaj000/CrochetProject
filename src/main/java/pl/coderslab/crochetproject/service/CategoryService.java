@@ -1,5 +1,6 @@
 package pl.coderslab.crochetproject.service;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.coderslab.crochetproject.dto.PatternListDTO;
@@ -17,6 +18,10 @@ import java.util.stream.Collectors;
 public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final PatternRepository patternRepository;
+
+    public String getCategoryNameFromId(Long id) {
+        return categoryRepository.findById(id).get().getName();
+    }
 
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
