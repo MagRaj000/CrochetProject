@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/patterns")
 @AllArgsConstructor
-//@Transactional
 public class PatternController {
     private final PatternService patternService;
 

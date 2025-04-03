@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.crochetproject.dto.NoteDTO;
-import pl.coderslab.crochetproject.model.users.Note;
 import pl.coderslab.crochetproject.service.NoteService;
 
 import java.util.List;
