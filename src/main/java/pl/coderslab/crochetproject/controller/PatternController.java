@@ -19,15 +19,26 @@ public class PatternController {
 
     @GetMapping("/home")
     public String showHomePage(Model model) {
-        model.addAttribute("allPatterns", patternService.getAllPatterns());
-        model.addAttribute("allCategories", categoryService.getAllCategories());
-        return "home";
+////        model.addAttribute("allPatterns", patternService.getAllPatterns());
+//        model.addAttribute("allPatterns", patternService.getAllPatterns());
+//        model.addAttribute("titleAll", "All available patterns");
+//        model.addAttribute("allCategories", categoryService.getAllCategories());
+        return "home1";
     }
+
+//    @GetMapping("/categories/{categoryId}/patterns")
+//    public String getAllPatternsByCategoryId(@PathVariable Long categoryId, Model model) {
+//        model.addAttribute("patterns", categoryService.getPatternsByCategoryId(categoryId));
+//        model.addAttribute("title", "Patterns for Selected Category");
+//        model.addAttribute("allCategories", categoryService.getAllCategories()); // Ensure categories are available
+//        return "home";
+//    }
 
     @GetMapping("/patterns/all")
     public String getAllPatterns(Model model) {
         model.addAttribute("patterns", patternService.getAllPatterns());
-        return "patterns";
+        model.addAttribute("title", "All available patterns");
+        return "home_patterns";
     }
 
 //    @GetMapping("/all")

@@ -15,13 +15,18 @@
     <!-- Tabs -->
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" href="patterns/all" data-toggle="tab">Browse</a>
+            <a class="nav-link <c:if test='${param.tab == null || param.tab == "browse"}'>active</c:if>'" href="?tab=browse" data-toggle="tab">Browse</a>
+<%--            <a class="nav-link active" href="" data-toggle="tab">Browse</a>--%>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#categories" data-toggle="tab">Categories</a>
+            <a class="nav-link <c:if test='${param.tab == "categories"}'>active</c:if>'" href="?tab=categories" data-toggle="tab">Categories</a>
         </li>
+<%--        <li class="nav-item">--%>
+<%--            <a class="nav-link" href="#categories" data-toggle="tab">Categories</a>--%>
+<%--        </li>--%>
         <li class="nav-item">
             <a class="nav-link" href="#all-patterns" data-toggle="tab">All patterns</a>
+<%--    <a class="nav-link <c:if test='${param.tab == "all-patterns"}'>active</c:if>'" href="?tab=all-patterns" data-toggle="tab">All patterns</a>--%>
         </li>
     </ul>
 
@@ -32,7 +37,8 @@
             <p>Browse content goes here...</p>
         </div>
         <!-- Categories tab -->
-        <div class="tab-pane fade" id="categories">
+        <div class="tab-pane fade <c:if test='${param.tab == "categories"}'>show active</c:if>'" id="categories">
+<%--        <div class="tab-pane fade" id="categories">--%>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Categories</h6>
@@ -50,7 +56,7 @@
                                 <c:forEach items="${allCategories}" var="category">
                                     <tr>
                                         <td>
-                                            <a href="categories/${category.id}/patterns">${category.name}</a>
+                                            <a href="/categories/${category.id}/patterns">${category.name}</a>
                                         </td>
                                         <td>${category.description}</td>
                                     </tr>
@@ -62,12 +68,18 @@
         </div>
             <!-- Placeholder for patterns table -->
             <div id="category-patterns">
-
+                <c:if test="${not empty patterns}">
+                    <c:set var="title" value="${title}" scope="request" />
+                    <c:set var="patterns" value="${patterns}" scope="request" />
+                    <jsp:include page="patterns_table.jsp" />
+                </c:if>
             </div>
         </div>
+
         <!-- All Patterns Tab -->
+<%--        <div class="tab-pane fade <c:if test='${param.tab == "all-patterns"}'>show active</c:if>'" id="all-patterns">--%>
         <div class="tab-pane fade" id="all-patterns">
-            <c:set var="title" value="All available patterns" scope="request" />
+            <c:set var="title" value="${titleAll}" scope="request" />
             <c:set var="patterns" value="${allPatterns}" scope="request" />
             <jsp:include page="patterns_table.jsp" />
         </div>
