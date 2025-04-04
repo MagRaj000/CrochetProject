@@ -6,34 +6,25 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.crochetproject.exceptions.ResourceNotFoundException;
 import pl.coderslab.crochetproject.model.crochet.Pattern;
-import pl.coderslab.crochetproject.service.CategoryService;
 import pl.coderslab.crochetproject.service.PatternService;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Controller
+@RequestMapping("/patterns")
 @AllArgsConstructor
 public class PatternController {
     private final PatternService patternService;
-    private final CategoryService categoryService;
 
-    @GetMapping("/home")
-    public String showHomePage(Model model) {
-        model.addAttribute("categories", categoryService.getAllCategories());
-        model.addAttribute("difficulties", patternService.getAllDifficulties());
-        model.addAttribute("yarns", patternService.getAllYarns());
-        return "home_form";
-    }
-
-    @GetMapping("/patterns/all")
+    @GetMapping("/all")
     public String getAllPatterns(Model model) {
         model.addAttribute("patterns", patternService.getAllPatterns());
         model.addAttribute("title", "All available patterns");
         return "home_patterns";
     }
 
-    @GetMapping("/patterns/{id}")
+    @GetMapping("/{id}")
     public String getPatternById(@PathVariable Long id, Model model) {
         Pattern pattern = patternService.getPatternById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pattern with id " + id + " not found"));
@@ -44,7 +35,7 @@ public class PatternController {
         return "show_pattern";
     }
 
-    @PostMapping("/patterns/filtered")
+    @PostMapping("/filtered")
     public String getFilteredPatterns(@RequestParam(required = false) Long categoryId,
                                                     @RequestParam(required = false) Long yarnId,
                                                     @RequestParam(required = false) String difficulty,
