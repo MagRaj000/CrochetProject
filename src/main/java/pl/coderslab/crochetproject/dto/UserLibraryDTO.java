@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Setter
 public class UserLibraryDTO {
     private Long id;
-    private PatternListDTO pattern;
+    private UserPatternListDTO pattern;
     private List<String> notes;
 
     public static UserLibraryDTO convertToUserLibraryDTO(UserData userData) {

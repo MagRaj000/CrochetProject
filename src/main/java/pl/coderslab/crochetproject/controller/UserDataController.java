@@ -48,10 +48,12 @@ public class UserDataController {
         return ResponseEntity.ok(response);
     }
 
-//    @GetMapping("/library/{id}")
-//    public List<UserLibraryDTO> getUserLibrary(@PathVariable Long id) {
-//        return userDataService.getUserLibrary(id);
-//    }
+    @GetMapping("/library/{id}")
+    public String getUserLibrary(@PathVariable Long id, Model model) {
+        model.addAttribute("patterns", userDataService.getUserLibrary(id));
+        model.addAttribute("title", "All available patterns");
+        return "user_library";
+    }
 //
 //    @ResponseStatus(HttpStatus.CREATED)
 //    @PostMapping("/save")

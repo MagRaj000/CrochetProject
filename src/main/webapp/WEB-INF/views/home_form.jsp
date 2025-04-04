@@ -23,6 +23,9 @@
     <li class="nav-item">
       <a class="nav-link" href="/patterns/all">All patterns</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/userdata/library/1">My library</a>
+    </li>
   </ul>
 
   <!-- Tab Content -->
@@ -76,6 +79,10 @@
 
     <div class="tab-pane fade" id="all-patterns">
       <p>All pattern content goes here...</p>
+    </div>
+
+    <div class="tab-pane fade" id="library">
+      <p>/library content goes here...</p>
     </div>
   </div>
 
