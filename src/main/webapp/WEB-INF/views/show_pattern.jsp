@@ -42,15 +42,19 @@
 
                         <!-- Details Section -->
                         <div class="col-md-6">
-                            <br><h2>${pattern.name}</h2><br>
+                            <br>
+                            <h2>${pattern.name}</h2><br>
                             <br><h4><span style="text-decoration: underline;">Details</span></h4><br>
                             <p><strong>Difficulty:</strong> ${pattern.difficulty}</p>
                             <p><strong>Yarn:</strong> ${pattern.yarn.weight} - ${pattern.yarn.name}</p>
                             <p><strong>Recommended hook size:</strong> ${pattern.yarn.hookSize} mm</p><br><br>
 
-                            <button id="toggleDescription" class="btn btn-primary mt-3">Show Description</button><br><br>
-                            <a href="${pageContext.request.contextPath}/progress/${pattern.id}" class="btn btn-show btn-sm">Track progress</a>
-                            <a href="${pageContext.request.contextPath}/save?id=${pattern.id}" class="btn btn-save btn-sm">Save</a>
+                            <button id="toggleDescription" class="btn btn-primary mt-3">Show Description</button>
+                            <br><br>
+                            <a href="${pageContext.request.contextPath}/userdata/progress/1/${pattern.id}"
+                               class="btn btn-show btn-sm">Track progress</a>
+                            <a href="${pageContext.request.contextPath}/save?id=${pattern.id}"
+                               class="btn btn-save btn-sm">Save</a>
                         </div>
                     </div>
 
@@ -63,11 +67,6 @@
                                 </tr>
                             </c:forEach>
                         </table>
-                        <%--            <ol>--%>
-                        <%--              <c:forEach var="line" items="${descriptionLines}">--%>
-                        <%--                <li>${line}</li>--%>
-                        <%--              </c:forEach>--%>
-                        <%--            </ol>--%>
                     </div>
                 </div>
             </div>

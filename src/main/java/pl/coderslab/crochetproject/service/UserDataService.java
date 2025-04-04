@@ -88,7 +88,7 @@ public class UserDataService {
         return deserializeProgress(userData.getProgress());
     }
 
-    public String updateProgress(Long userId, Long patternId, int stepIndex) {
+    public boolean[] updateProgress(Long userId, Long patternId, int stepIndex) {
         UserData userData = userDataRepository.findByUserIdAndPatternId(userId, patternId);
         if (userData == null) {
             throw new ResourceNotFoundException("Pattern with id " + patternId + " not found in user's library");
@@ -119,9 +119,12 @@ public class UserDataService {
             }
         }
         userData.setCompleted(allCompleted);
-
         userDataRepository.save(userData);
-        return "Progress was successfully updated";
+        return progress;
+    }
+
+    public boolean getCompletedStatusByUserIdAndPatternId(Long userId, Long patternId) {
+        return userDataRepository.getCompletedStatusByUserIdAndPatternId(userId, patternId);
     }
 
     // convert the boolean array to a JSON string for storage

@@ -58,6 +58,26 @@
       font-family: 'Helvetica Neue', Arial, sans-serif; /* change font to match the page style*/
       white-space: pre-wrap; /* allow text wrapping */
     }
+    .step {
+      cursor: pointer;
+      margin: 5px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .step.completed {
+      background-color: #bbddb4;
+      color: gray;
+    }
+    .congrats-message {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #155724;
+      color: #ffffff;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+      text-align: center;
+    }
   </style>
 </head>
 
