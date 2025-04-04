@@ -38,7 +38,7 @@
             </td>
             <td class="action-links">
               <a href="${pageContext.request.contextPath}/save?id=${pattern.id}" class="btn btn-save btn-sm">Save</a>
-              <a href="${pageContext.request.contextPath}/show?id=${pattern.id}" class="btn btn-show btn-sm">Show</a>
+              <a href="${pageContext.request.contextPath}/patterns/${pattern.id}" class="btn btn-show btn-sm">Show</a>
             </td>
           </tr>
         </c:forEach>

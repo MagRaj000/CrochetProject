@@ -10,10 +10,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<String> handlePatternNotFoundException(ResourceNotFoundException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                .header("Content-Type", "text/html")
-//                .body("<img src='https://http.cat/404' alt='404 Not Found'>" + e.getMessage());
+//        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .header("Content-Type", "text/html")
+                .body("<img src='https://http.cat/404' alt='404 Not Found'><br><br>" + e.getMessage());
     }
 
     @ExceptionHandler(ResourceAlreadyExitsException.class)

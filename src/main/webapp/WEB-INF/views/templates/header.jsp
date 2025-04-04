@@ -42,7 +42,6 @@
     .btn-show:hover {
       background-color: #0450df;
     }
-
     .action-links a:hover {
       text-decoration: underline;
       color: white;
@@ -54,6 +53,10 @@
     .difficulty-stars {
       margin-left: 10px;
       color: #e8cc36;
+    }
+    #description {
+      font-family: 'Helvetica Neue', Arial, sans-serif; /* change font to match the page style*/
+      white-space: pre-wrap; /* allow text wrapping */
     }
   </style>
 </head>

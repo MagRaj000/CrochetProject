@@ -10,6 +10,7 @@ import pl.coderslab.crochetproject.repository.PatternRepository;
 import pl.coderslab.crochetproject.repository.YarnRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +32,11 @@ public class PatternService {
     public List<Yarn> getAllYarns() {
         return yarnRepository.findDistinctYarns();
     }
+
+    public Optional<Pattern> getPatternById(Long id) {
+        return patternRepository.findById(id);
+    }
+
 
     public List<PatternListDTO> getFilteredPatterns(Long categoryId, Long yarnId, String difficulty) {
         List<Pattern> patterns = findPatterns(categoryId, yarnId, difficulty);

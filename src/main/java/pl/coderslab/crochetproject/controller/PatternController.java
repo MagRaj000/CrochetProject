@@ -4,8 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.crochetproject.exceptions.ResourceNotFoundException;
+import pl.coderslab.crochetproject.model.crochet.Pattern;
 import pl.coderslab.crochetproject.service.CategoryService;
 import pl.coderslab.crochetproject.service.PatternService;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -26,6 +31,17 @@ public class PatternController {
         model.addAttribute("patterns", patternService.getAllPatterns());
         model.addAttribute("title", "All available patterns");
         return "home_patterns";
+    }
+
+    @GetMapping("/patterns/{id}")
+    public String getPatternById(@PathVariable Long id, Model model) {
+        Pattern pattern = patternService.getPatternById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Pattern with id " + id + " not found"));
+        model.addAttribute("pattern", pattern);
+        // split description here, as later there were problems with \n in JSP
+        List<String> descriptionLines = Arrays.asList(pattern.getDescription().split("\\r?\\n"));
+        model.addAttribute("descriptionLines", descriptionLines);
+        return "show_pattern";
     }
 
     @PostMapping("/patterns/filtered")
