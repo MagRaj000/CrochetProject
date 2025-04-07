@@ -42,6 +42,13 @@
     .btn-show:hover {
       background-color: #0450df;
     }
+    .btn-delete {
+      background-color: #a5171b;
+      color: white;
+    }
+    .btn-delete:hover {
+      background-color: #811113;
+    }
     .action-links a:hover {
       text-decoration: underline;
       color: white;

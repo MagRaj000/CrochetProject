@@ -35,7 +35,7 @@ public class UserDataService {
                 .collect(Collectors.toList());
     }
 
-    public String savePatternToLibrary(Long userId, Long patternId) {
+    public void savePatternToLibrary(Long userId, Long patternId) {
         UserData oldUserData = userDataRepository.findByUserIdAndPatternId(userId, patternId);
         if (oldUserData != null) {
             throw new ResourceAlreadyExitsException("Pattern already exists in user's library");
@@ -55,18 +55,15 @@ public class UserDataService {
         String[] steps = pattern.getDescription().split("\n");
         boolean[] progress = new boolean[steps.length];
         userData.setProgress(serializeProgress(progress));
-
         userDataRepository.save(userData);
-        return "Pattern was successfully added to user's library";
     }
 
-    public String deletePatternFromLibrary(Long userId, Long patternId) {
+    public void deletePatternFromLibrary(Long userId, Long patternId) {
         UserData userData = userDataRepository.findByUserIdAndPatternId(userId, patternId);
         if (userData == null) {
             throw new ResourceNotFoundException("Pattern with id " + patternId + " not found in user's library");
         }
         userDataRepository.delete(userData);
-        return "Pattern was successfully deleted from user's library";
     }
 
     public String toggleCompleted(Long userId, Long patternId) {

@@ -18,11 +18,15 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceAlreadyExitsException.class)
     public ResponseEntity<String> handlePatternAlreadyExitsException(ResourceAlreadyExitsException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .header("Content-Type", "text/html")
+                .body("<img src='https://http.cat/409' alt='409 Conflict'><br><br>" + e.getMessage());
     }
 
     @ExceptionHandler(java.lang.IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .header("Content-Type", "text/html")
+                .body("<img src='https://http.cat/400' alt='400 Bad Request'><br><br>" + e.getMessage());
     }
 }

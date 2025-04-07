@@ -56,7 +56,7 @@
                             <br><br>
                             <a href="${pageContext.request.contextPath}/userdata/progress/1/${pattern.id}"
                                class="btn btn-show btn-sm">Track progress</a>
-                            <a href="${pageContext.request.contextPath}/save?id=${pattern.id}"
+                            <a href="${pageContext.request.contextPath}/userdata/save?userId=1&patternId=${pattern.id}"
                                class="btn btn-save btn-sm">Save</a>
                         </div>
                     </div>

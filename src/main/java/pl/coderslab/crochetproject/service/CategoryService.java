@@ -1,6 +1,5 @@
 package pl.coderslab.crochetproject.service;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.coderslab.crochetproject.dto.PatternListDTO;

@@ -49,26 +49,16 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Pattern</th>
-                                <th>Completed</th>
-                                <th>Notes</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${patterns}" var="pattern">
+                            <c:forEach items="${library}" var="userData">
                                 <tr>
-                                    <td>${pattern.pattern.name}</td>
-                                    <td>${pattern.pattern.completed ? 'Yes' : 'No'}</td>
-                                    <td>${pattern.notes}</td>
-                                    <td class="action-links">
-                                        <a href="${pageContext.request.contextPath}/save?id=${pattern.pattern.id}"
-                                           class="btn btn-save btn-sm">Save</a>
-                                        <a href="${pageContext.request.contextPath}/patterns/${pattern.pattern.id}"
-                                           class="btn btn-show btn-sm">Show</a>
-                                    </td>
+                                    <td>${userData.pattern.name}</td>
+                                    <td>${userData.pattern.completed ? 'Completed' : 'In progress'}</td>
+                                    <td><a href="${pageContext.request.contextPath}/notes/${userData.id}"
+                                           class="btn btn-save btn-sm">Show Notes</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/patterns/${userData.pattern.id}"
+                                           class="btn btn-show btn-sm">Show Pattern</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/userdata/delete?userId=1&patternId=${userData.pattern.id}"
+                                           class="btn btn-delete btn-sm">Remove from Library</a></td>
                                 </tr>
                             </c:forEach>
                             </tbody>

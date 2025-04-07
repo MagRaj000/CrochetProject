@@ -37,7 +37,6 @@ public class PatternService {
         return patternRepository.findById(id);
     }
 
-
     public List<PatternListDTO> getFilteredPatterns(Long categoryId, Long yarnId, String difficulty) {
         List<Pattern> patterns = findPatterns(categoryId, yarnId, difficulty);
         if (patterns.isEmpty()) {

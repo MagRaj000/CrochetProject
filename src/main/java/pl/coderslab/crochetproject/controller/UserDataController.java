@@ -50,21 +50,22 @@ public class UserDataController {
 
     @GetMapping("/library/{id}")
     public String getUserLibrary(@PathVariable Long id, Model model) {
-        model.addAttribute("patterns", userDataService.getUserLibrary(id));
-        model.addAttribute("title", "All available patterns");
+        model.addAttribute("library", userDataService.getUserLibrary(id));
+        model.addAttribute("title", "All saved patterns");
         return "user_library";
     }
-//
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @PostMapping("/save")
-//    public String save(@RequestParam Long userId, @RequestParam Long patternId) {
-//        return userDataService.savePatternToLibrary(userId, patternId);
-//    }
-//
-//    @DeleteMapping("/delete")
-//    public String delete(@RequestParam Long userId, @RequestParam Long patternId) {
-//        return userDataService.deletePatternFromLibrary(userId, patternId);
-//    }
+
+    @GetMapping("/save")
+    public String save(@RequestParam Long userId, @RequestParam Long patternId) {
+        userDataService.savePatternToLibrary(userId, patternId);
+        return "redirect:/userdata/library/" + userId;
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam Long userId, @RequestParam Long patternId) {
+        userDataService.deletePatternFromLibrary(userId, patternId);
+        return "redirect:/userdata/library/" + userId;
+    }
 //
 //    @PostMapping("/complete")
 //    public String toggleCompleted(@RequestParam Long userId, @RequestParam Long patternId) {
