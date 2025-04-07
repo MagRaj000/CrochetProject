@@ -14,6 +14,7 @@ import pl.coderslab.crochetproject.repository.PatternRepository;
 import pl.coderslab.crochetproject.repository.UserDataRepository;
 import pl.coderslab.crochetproject.repository.UserRepository;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,15 +67,18 @@ public class UserDataService {
         userDataRepository.delete(userData);
     }
 
-    public String toggleCompleted(Long userId, Long patternId) {
+    public void toggleCompleted(Long userId, Long patternId) {
         UserData userData = userDataRepository.findByUserIdAndPatternId(userId, patternId);
         if (userData == null) {
             throw new ResourceNotFoundException("Pattern with id " + patternId + " not found in user's library");
         }
         boolean isCompleted = !userData.isCompleted();
         userData.setCompleted(isCompleted);
+        // update progress
+        boolean[] progress = deserializeProgress(userData.getProgress());
+        Arrays.fill(progress, isCompleted);
+        userData.setProgress(serializeProgress(progress));
         userDataRepository.save(userData);
-        return "Pattern was marked as " + (isCompleted ? "completed" : "not completed") + " for this user";
     }
 
     public boolean[] getProgress(Long userId, Long patternId) {

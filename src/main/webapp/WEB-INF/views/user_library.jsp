@@ -52,12 +52,17 @@
                             <c:forEach items="${library}" var="userData">
                                 <tr>
                                     <td>${userData.pattern.name}</td>
-                                    <td>${userData.pattern.completed ? 'Completed' : 'In progress'}</td>
+                                    <td>
+                                    <span class="completion-status">${userData.pattern.completed ? 'Completed' : 'In progress'}</span>
+                                        <input type="checkbox" data-user-id="1" data-pattern-id="${userData.pattern.id}"
+                                            ${userData.pattern.completed ? 'checked' : ''} onclick="toggleCompleted(this)">
+                                    </td>
                                     <td><a href="${pageContext.request.contextPath}/notes/${userData.id}"
                                            class="btn btn-save btn-sm">Show Notes</a></td>
                                     <td><a href="${pageContext.request.contextPath}/patterns/${userData.pattern.id}"
                                            class="btn btn-show btn-sm">Show Pattern</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/userdata/delete?userId=1&patternId=${userData.pattern.id}"
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/userdata/delete?userId=1&patternId=${userData.pattern.id}"
                                            class="btn btn-delete btn-sm">Remove from Library</a></td>
                                 </tr>
                             </c:forEach>
@@ -72,3 +77,34 @@
 </div>
 <!-- /.container-fluid -->
 <%@ include file="templates/footer.jsp" %>
+
+<script>
+    function toggleCompleted(checkbox) {
+        const userId = checkbox.getAttribute('data-user-id');
+        const patternId = checkbox.getAttribute('data-pattern-id');
+        const completionStatusElement = checkbox.previousElementSibling;
+
+        fetch(`${pageContext.request.contextPath}/userdata/complete`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'userId=' + userId + '&patternId=' + patternId
+        }).then(response => {
+            if (response.ok) {
+                if (checkbox.checked) {
+                    completionStatusElement.innerText = 'Completed';
+                } else {
+                    completionStatusElement.innerText = 'In progress';
+                }
+            } else {
+                alert("Failed to toggle completion status.");
+                checkbox.checked = !checkbox.checked;
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+            alert("An error occurred while toggling the completion status.");
+            checkbox.checked = !checkbox.checked;
+        });
+    }
+</script>

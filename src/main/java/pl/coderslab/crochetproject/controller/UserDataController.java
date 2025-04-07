@@ -66,11 +66,12 @@ public class UserDataController {
         userDataService.deletePatternFromLibrary(userId, patternId);
         return "redirect:/userdata/library/" + userId;
     }
-//
-//    @PostMapping("/complete")
-//    public String toggleCompleted(@RequestParam Long userId, @RequestParam Long patternId) {
-//        return userDataService.toggleCompleted(userId, patternId);
-//    }
+
+    @PostMapping("/complete")
+    public String toggleCompleted(@RequestParam Long userId, @RequestParam Long patternId) {
+        userDataService.toggleCompleted(userId, patternId);
+        return "redirect:/userdata/library/" + userId;
+    }
 
 
 }
