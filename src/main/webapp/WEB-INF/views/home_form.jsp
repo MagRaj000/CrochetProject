@@ -12,6 +12,9 @@
             class="fas fa-download fa-sm text-white-50"></i>Sign in</a>
   </div>
 
+  <!-- Print context path for debugging -->
+<%--  <p>Context Path: <c:out value="${pageContext.request.contextPath}" /></p>--%>
+
   <!-- Tabs -->
   <ul class="nav nav-tabs">
     <li class="nav-item">
@@ -82,7 +85,7 @@
     </div>
 
     <div class="tab-pane fade" id="library">
-      <p>/library content goes here...</p>
+      <p>User library content goes here...</p>
     </div>
   </div>
 
