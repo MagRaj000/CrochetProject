@@ -1,12 +1,10 @@
 package pl.coderslab.crochetproject.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.crochetproject.dto.UserLibraryDTO;
 import pl.coderslab.crochetproject.exceptions.ResourceNotFoundException;
 import pl.coderslab.crochetproject.model.crochet.Pattern;
 import pl.coderslab.crochetproject.service.PatternService;
@@ -58,7 +56,7 @@ public class UserDataController {
     @GetMapping("/save")
     public String save(@RequestParam Long userId, @RequestParam Long patternId) {
         userDataService.savePatternToLibrary(userId, patternId);
-        return "redirect:/userdata/library/" + userId;
+        return "redirect:/patterns/" + patternId;
     }
 
     @GetMapping("/delete")
@@ -72,6 +70,5 @@ public class UserDataController {
         userDataService.toggleCompleted(userId, patternId);
         return "redirect:/userdata/library/" + userId;
     }
-
 
 }

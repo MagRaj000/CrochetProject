@@ -2,6 +2,7 @@ package pl.coderslab.crochetproject.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.coderslab.crochetproject.dto.NoteDTO;
 import pl.coderslab.crochetproject.exceptions.ResourceNotFoundException;
 import pl.coderslab.crochetproject.model.users.Note;
 import pl.coderslab.crochetproject.model.users.UserData;
@@ -17,12 +18,14 @@ public class NoteService {
     private final NoteRepository noteRepository;
     private final UserDataRepository userDataRepository;
 
-    public List<Note> getAllNotesForPatternByUser(long userDataId) {
+    public List<NoteDTO> getAllNotesForPatternByUser(long userDataId) {
         List<Note> notes = noteRepository.findByUserDataId(userDataId);
         if (notes.isEmpty()) {
             throw new ResourceNotFoundException("Notes for UserData with id " + userDataId + " not found");
         }
-        return notes;
+        return notes.stream()
+                .map(NoteDTO::convertToNoteDTO)
+                .toList();
     }
 
     public String addNoteToPattern(Long userDataId, String content) {
