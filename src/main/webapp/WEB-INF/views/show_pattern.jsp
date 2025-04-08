@@ -51,8 +51,6 @@
                             <a href="${pageContext.request.contextPath}/userdata/save?userId=1&patternId=${pattern.id}"
                                class="btn btn-save btn-sm">Save</a>
                         </div>
-
-
                     </div>
                 </div>
 
@@ -70,17 +68,9 @@
         </div>
     </div>
 
-    <div class="tab-pane fade" id="categories">
-        <p>Categories content goes here...</p>
-    </div>
-
-    <div class="tab-pane fade" id="all-patterns">
-        <p>All pattern content goes here...</p>
-    </div>
-
-    <div class="tab-pane fade" id="library">
-        <p>User library content goes here...</p>
-    </div>
+    <div class="tab-pane fade" id="categories"></div>
+    <div class="tab-pane fade" id="all-patterns"></div>
+    <div class="tab-pane fade" id="library"></div>
 </div>
 
 <%@ include file="templates/footer.jsp" %>
@@ -88,7 +78,7 @@
 
 <script>
     document.getElementById("toggleDescription").addEventListener("click", function () {
-        var description = document.getElementById("description");
+        const description = document.getElementById("description");
         if (description.style.display === "none") {
             description.style.display = "block";
             this.textContent = "Hide Description";

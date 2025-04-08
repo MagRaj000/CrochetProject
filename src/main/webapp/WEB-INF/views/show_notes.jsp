@@ -21,16 +21,9 @@
 
 <!-- Tab Content -->
 <div class="tab-content mt-3">
-    <div class="tab-pane fade" id="browse">
-        <p>Browse content goes here...</p>
-    </div>
-
-    <div class="tab-pane fade" id="categories">
-        <p>Categories content goes here...</p>
-    </div>
-    <div class="tab-pane fade" id="all-patterns">
-        <p>All pattern content goes here...</p>
-    </div>
+    <div class="tab-pane fade" id="browse"></div>
+    <div class="tab-pane fade" id="categories"></div>
+    <div class="tab-pane fade" id="all-patterns"></div>
 
     <div class="tab-pane fade show active" id="library">
         <div class="card shadow mb-4">
