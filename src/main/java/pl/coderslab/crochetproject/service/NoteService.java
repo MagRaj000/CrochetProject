@@ -28,7 +28,7 @@ public class NoteService {
                 .toList();
     }
 
-    public String addNoteToPattern(Long userDataId, String content) {
+    public void addNoteToPattern(Long userDataId, String content) {
         UserData userData = userDataRepository
                 .findById(userDataId)
                 .orElseThrow(() -> new ResourceNotFoundException("UserData with id " + userDataId + " not found"));
@@ -36,16 +36,14 @@ public class NoteService {
         note.setContent(content);
         note.setUserData(userData);
         noteRepository.save(note);
-        return "Note added for user id " + userData.getUser().getId() + " and pattern id " + userData.getPattern().getId();
     }
 
-    public String updateNote(Long noteId, String content) {
+    public void updateNote(Long noteId, String content) {
         Note note = noteRepository.
                 findById(noteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Note with id " + noteId + " not found"));
         note.setContent(content);
         noteRepository.save(note);
-        return "Note updated";
     }
 
     public String deleteNote(Long noteId) {
@@ -57,4 +55,14 @@ public class NoteService {
         return "Note deleted";
     }
 
+    public Long getUserDataIdByNoteId(Long noteId) {
+        return noteRepository.findUserDataIdByNoteId(noteId);
+    }
+
+    public NoteDTO getNoteById(Long noteId) {
+        Note note = noteRepository
+                .findById(noteId)
+                .orElseThrow(() -> new ResourceNotFoundException("Note with id " + noteId + " not found"));
+        return NoteDTO.convertToNoteDTO(note);
+    }
 }

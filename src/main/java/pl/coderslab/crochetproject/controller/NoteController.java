@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.crochetproject.dto.NoteDTO;
+import pl.coderslab.crochetproject.model.users.Note;
 import pl.coderslab.crochetproject.repository.UserDataRepository;
 import pl.coderslab.crochetproject.service.NoteService;
 
@@ -25,18 +26,37 @@ public class NoteController {
         model.addAttribute("notes", notes);
         model.addAttribute("patternName", userDataRepository.findById(userDataId).get().getPattern().getName());
         model.addAttribute("userDataId", userDataId);
+        if (notes.isEmpty()) {
+            return "redirect:/notes/add/userDataId=" + userDataId;
+        }
         return "show_notes";
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/add")
-    public String addNoteToPattern(@RequestParam Long userDataId, @RequestParam String content) {
-        return noteService.addNoteToPattern(userDataId, content);
+    @GetMapping("/add")
+    public String showAddNoteForm(@RequestParam Long userDataId, Model model) {
+        model.addAttribute("userDataId", userDataId);
+        model.addAttribute("note", new Note());
+        return "add_note";
     }
 
-    @PutMapping("/update")
+    @PostMapping("/add")
+    public String addNoteToPattern(@RequestParam Long userDataId, @RequestParam String content) {
+        noteService.addNoteToPattern(userDataId, content);
+        return "redirect:/notes/" + userDataId;
+    }
+
+    @GetMapping("/update")
+    public String showUpdateNoteForm(@RequestParam Long noteId, Model model) {
+        NoteDTO noteDTO = noteService.getNoteById(noteId);
+        model.addAttribute("note", noteDTO);
+        return "update_note";
+    }
+
+    @PostMapping("/update")
     public String updateNoteContent(@RequestParam Long noteId, @RequestParam String content) {
-        return noteService.updateNote(noteId, content);
+        noteService.updateNote(noteId, content);
+        Long userDataId = noteService.getUserDataIdByNoteId(noteId);
+        return "redirect:/notes/" + userDataId;
     }
 
     @DeleteMapping("/delete")
