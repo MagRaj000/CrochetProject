@@ -48,7 +48,7 @@
                 </div>
                 <div class="card-body">
                     <div class="action-links">
-                        <a href="${pageContext.request.contextPath}/notes/add?userDataId=${userDataId}&content=${note.content}" class="btn btn-save btn-sm">Add Note</a>
+                        <a href="${pageContext.request.contextPath}/notes/add?userDataId=${userDataId}" class="btn btn-save btn-sm">Add Note</a>
                     </div><br>
                     <div class="table-responsive">
                         <table class="table">
@@ -63,7 +63,7 @@
                                 <tr>
                                     <td>${note.content}</td>
                                     <td class="action-links">
-                                        <a href="${pageContext.request.contextPath}/notes/update?noteId=${note.id}&content=${note.content}"
+                                        <a href="${pageContext.request.contextPath}/notes/update?noteId=${note.id}"
                                            class="btn btn-show btn-sm">Update Note</a>
                                         <a href="${pageContext.request.contextPath}/notes/delete?noteId=${note.id}"
                                            class="btn btn-delete btn-sm">Delete Note</a></td>

@@ -1,7 +1,6 @@
 package pl.coderslab.crochetproject.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -59,9 +58,11 @@ public class NoteController {
         return "redirect:/notes/" + userDataId;
     }
 
-    @DeleteMapping("/delete")
+    @GetMapping("/delete")
     public String deleteNote(@RequestParam Long noteId) {
-        return noteService.deleteNote(noteId);
+        Long userDataId = noteService.getUserDataIdByNoteId(noteId);
+        noteService.deleteNote(noteId);
+        return "redirect:/notes/" + userDataId;
     }
 
 }

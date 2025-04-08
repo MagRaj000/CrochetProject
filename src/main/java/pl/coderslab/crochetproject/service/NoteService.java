@@ -46,13 +46,12 @@ public class NoteService {
         noteRepository.save(note);
     }
 
-    public String deleteNote(Long noteId) {
+    public void deleteNote(Long noteId) {
         Optional<Note> note = noteRepository.findById(noteId);
         if (note.isEmpty()) {
             throw new ResourceNotFoundException("Note with id " + noteId + " not found");
         }
         noteRepository.deleteById(noteId);
-        return "Note deleted";
     }
 
     public Long getUserDataIdByNoteId(Long noteId) {
