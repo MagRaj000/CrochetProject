@@ -22,12 +22,12 @@ public class NoteController {
     @GetMapping("/{userDataId}")
     public String getAllNotesForPatternByUser(@PathVariable Long userDataId, Model model) {
         List<NoteDTO> notes = noteService.getAllNotesForPatternByUser(userDataId);
+        if (notes.isEmpty()) {
+            return "redirect:/notes/add?userDataId=" + userDataId;
+        }
         model.addAttribute("notes", notes);
         model.addAttribute("patternName", userDataRepository.findById(userDataId).get().getPattern().getName());
         model.addAttribute("userDataId", userDataId);
-        if (notes.isEmpty()) {
-            return "redirect:/notes/add/userDataId=" + userDataId;
-        }
         return "show_notes";
     }
 

@@ -20,9 +20,6 @@ public class NoteService {
 
     public List<NoteDTO> getAllNotesForPatternByUser(long userDataId) {
         List<Note> notes = noteRepository.findByUserDataId(userDataId);
-        if (notes.isEmpty()) {
-            throw new ResourceNotFoundException("Notes for UserData with id " + userDataId + " not found");
-        }
         return notes.stream()
                 .map(NoteDTO::convertToNoteDTO)
                 .toList();
