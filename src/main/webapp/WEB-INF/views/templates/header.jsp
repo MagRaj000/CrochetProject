@@ -136,3 +136,13 @@
 <%--      <nav class="navbar navbar-expand navbar-light bg-white mb-4 static-top shadow"></nav>--%>
       <nav class="navbar navbar-expand navbar-light mb-4 static-top shadow custom-navbar"></nav>
       <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Crochet Pattern Manager</h1>
+          <a href="add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                  class="fas fa-download fa-sm text-white-50"></i>Sign in</a>
+        </div>
