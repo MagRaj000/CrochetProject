@@ -85,6 +85,10 @@
       border-radius: 5px;
       text-align: center;
     }
+    .flex-container {
+      display: flex;
+      align-items: center;
+    }
   </style>
 </head>
 
@@ -143,6 +147,6 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Crochet Pattern Manager</h1>
-          <a href="add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                  class="fas fa-download fa-sm text-white-50"></i>Sign in</a>
+          <a href="${pageContext.request.contextPath}/login" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                  class="fas fa-download fa-sm text-white-50"></i> Log in</a>
         </div>

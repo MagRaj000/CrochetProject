@@ -20,4 +20,9 @@ public class HomeController {
         model.addAttribute("yarns", patternService.getAllYarns());
         return "home_form";
     }
+
+    @GetMapping("/login")
+    public String showSigninPage(Model model) {
+        return "login";
+    }
 }
