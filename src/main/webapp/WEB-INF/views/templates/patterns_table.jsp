@@ -36,8 +36,10 @@
                                 </span>
                         </td>
                         <td class="action-links">
-                            <a href="${pageContext.request.contextPath}/userdata/save?userId=1&patternId=${pattern.id}"
+                            <c:if test="${isLoggedIn}">
+                            <a href="${pageContext.request.contextPath}/userdata/save?userId=${userId}&patternId=${pattern.id}"
                                class="btn btn-save btn-sm">Save</a>
+                            </c:if>
                             <a href="${pageContext.request.contextPath}/patterns/${pattern.id}"
                                class="btn btn-show btn-sm">Show</a>
                         </td>

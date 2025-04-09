@@ -32,7 +32,7 @@
     document.querySelectorAll('.step').forEach(function (step) {
         step.addEventListener('click', function () {
             const stepIndex = this.getAttribute('data-step-index');
-            const userId = 1; // userId is 1 for now
+            const userId =  ${userId};
             let patternId = ${pattern.id};
 
             // toggle the step state

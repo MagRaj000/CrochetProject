@@ -28,10 +28,16 @@
                 <button id="toggleDescription" class="btn btn-primary mt-3">Show Description</button>
                 <br><br>
                 <div class="action-links">
-                    <a href="${pageContext.request.contextPath}/userdata/progress/1/${pattern.id}"
-                       class="btn btn-show btn-sm">Track progress</a>
-                    <a href="${pageContext.request.contextPath}/userdata/save?userId=1&patternId=${pattern.id}"
-                       class="btn btn-save btn-sm">Save</a>
+                    <c:if test="${isLoggedIn}">
+                        <a href="${pageContext.request.contextPath}/userdata/progress/${userId}/${pattern.id}"
+                           class="btn btn-show btn-sm">Track progress</a>
+                        <a href="${pageContext.request.contextPath}/userdata/save?userId=${userId}&patternId=${pattern.id}"
+                           class="btn btn-save btn-sm">Save</a>
+                    </c:if>
+                    <c:if test="${not isLoggedIn}">
+                        <a href="${pageContext.request.contextPath}/login"
+                           class="btn btn-primary">Log in to save or track progress</a>
+                    </c:if>
                 </div>
             </div>
         </div>

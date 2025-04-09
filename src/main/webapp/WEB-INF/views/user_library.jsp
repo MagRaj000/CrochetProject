@@ -15,10 +15,9 @@
                 <c:forEach items="${library}" var="userData">
                     <tr>
                         <td>${userData.pattern.name}</td>
-                        <td>${userId}</td>
                         <td>
                             <span class="completion-status">${userData.pattern.completed ? 'Completed' : 'In progress'}</span>
-                            <input type="checkbox" data-user-id="1" data-pattern-id="${userData.pattern.id}"
+                            <input type="checkbox" data-user-id="${userId}" data-pattern-id="${userData.pattern.id}"
                                 ${userData.pattern.completed ? 'checked' : ''}
                                    onclick="toggleCompleted(this)">
                         </td>
@@ -27,7 +26,7 @@
                                class="btn btn-save btn-sm">Show Notes</a>
                             <a href="${pageContext.request.contextPath}/patterns/${userData.pattern.id}"
                                class="btn btn-show btn-sm">Show Pattern</a>
-                            <a href="${pageContext.request.contextPath}/userdata/delete?userId=1&patternId=${userData.pattern.id}"
+                            <a href="${pageContext.request.contextPath}/userdata/delete?userId=${userId}&patternId=${userData.pattern.id}"
                                class="btn btn-delete btn-sm">Remove from Library</a></td>
                     </tr>
                 </c:forEach>

@@ -19,5 +19,7 @@ public class GlobalControllerAdvice {
         model.addAttribute("userId", userId);
         model.addAttribute("username", username);
         model.addAttribute("isLoggedIn", userId != null && userId > 0);
+        // Debug
+        System.out.println("ControllerAdvice - userId: " + userId + ", isLoggedIn: " + (userId != null && userId > 0));
     }
 }
