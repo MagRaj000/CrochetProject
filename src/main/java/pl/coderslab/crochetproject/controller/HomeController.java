@@ -27,6 +27,7 @@ public class HomeController {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("difficulties", patternService.getAllDifficulties());
         model.addAttribute("yarns", patternService.getAllYarns());
+        model.addAttribute("currentTab", "browse");
         return "home_form";
     }
 

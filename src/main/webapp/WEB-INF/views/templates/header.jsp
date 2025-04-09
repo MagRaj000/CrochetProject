@@ -184,3 +184,24 @@
                         </c:otherwise>
                     </c:choose>
                 </div>
+
+                <!-- Tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link ${currentTab == 'browse' ? 'active' : ''}" href="/home">Browse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ${currentTab == 'categories' ? 'active' : ''}" href="/categories/all">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ${currentTab == 'all-patterns' ? 'active' : ''}" href="/patterns/all">All
+                            patterns</a>
+                    </li>
+                    <!-- only show the Library tab if user is logged in -->
+                    <c:if test="${isLoggedIn}">
+                        <li class="nav-item">
+                            <a class="nav-link ${currentTab == 'library' ? 'active' : ''}"
+                               href="/userdata/library/${userId}">My Library</a>
+                        </li>
+                    </c:if>
+                </ul>

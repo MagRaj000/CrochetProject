@@ -3,50 +3,27 @@
 
 <%@ include file="templates/header.jsp" %>
 
-<!-- Tabs -->
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link active" href="/home">Browse</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/categories/all">Categories</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/patterns/all">All patterns</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/userdata/library/1">My library</a>
-    </li>
-</ul>
-
 <!-- Tab Content -->
-<div class="tab-content mt-3">
-    <div class="tab-pane fade show active" id="browse">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">${pattern.name}</h6>
-            </div>
-            <div class="card-body">
-                <!-- Steps Section -->
-                <div class="col-12">
-                    <h5>Steps</h5>
-                    <div id="steps">
-                        <c:forEach var="step" items="${descriptionLines}" varStatus="status">
-                            <div class="step ${progress[status.index] ? 'completed' : ''}"
-                                 data-step-index="${status.index}">
-                                    ${step}
-                            </div>
-                        </c:forEach>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">${pattern.name}</h6>
+    </div>
+    <div class="card-body">
+        <!-- Steps Section -->
+        <div class="col-12">
+            <h5>Steps</h5>
+            <div id="steps">
+                <c:forEach var="step" items="${descriptionLines}" varStatus="status">
+                    <div class="step ${progress[status.index] ? 'completed' : ''}"
+                         data-step-index="${status.index}">
+                            ${step}
                     </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
     </div>
-
-    <div class="tab-pane fade" id="categories"></div>
-    <div class="tab-pane fade" id="all-patterns"></div>
-    <div class="tab-pane fade" id="library"></div>
 </div>
+<a href="javascript:history.back()" class="btn btn-secondary">Back</a>
 
 <%@ include file="templates/footer.jsp" %>
 

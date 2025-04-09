@@ -21,6 +21,7 @@ public class PatternController {
     public String getAllPatterns(Model model) {
         model.addAttribute("patterns", patternService.getAllPatterns());
         model.addAttribute("title", "All available patterns");
+        model.addAttribute("currentTab", "all-patterns");
         return "home_patterns";
     }
 
@@ -44,6 +45,7 @@ public class PatternController {
         if (difficulty.isEmpty()) difficulty = null;
         model.addAttribute("patterns", patternService.getFilteredPatterns(categoryId, yarnId, difficulty));
         model.addAttribute("title", "All matching patterns");
+        model.addAttribute("currentTab", "browse");
         return "filtered_patterns";
     }
 }

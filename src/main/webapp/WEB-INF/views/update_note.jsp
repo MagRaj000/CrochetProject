@@ -3,6 +3,7 @@
 
 <%@ include file="templates/header.jsp" %>
 
+<br><br>
 <form action="${pageContext.request.contextPath}/notes/update" method="post">
     <input type="hidden" name="noteId" value="${note.id}"/>
     <div class="form-group">

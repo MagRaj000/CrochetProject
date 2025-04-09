@@ -52,6 +52,7 @@ public class UserDataController {
         model.addAttribute("userId", id);
         model.addAttribute("library", userDataService.getUserLibrary(id));
         model.addAttribute("title", "All saved patterns");
+        model.addAttribute("currentTab", "library");
         return "user_library";
     }
 
