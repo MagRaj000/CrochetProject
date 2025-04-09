@@ -1,5 +1,6 @@
 package pl.coderslab.crochetproject.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -8,13 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import pl.coderslab.crochetproject.service.CategoryService;
 import pl.coderslab.crochetproject.service.PatternService;
 import pl.coderslab.crochetproject.service.UserService;
 
 @Controller
 @AllArgsConstructor
-@SessionAttributes("userId")
+@SessionAttributes({"userId", "username"})
 public class HomeController {
     private final PatternService patternService;
     private final CategoryService categoryService;
@@ -25,7 +27,6 @@ public class HomeController {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("difficulties", patternService.getAllDifficulties());
         model.addAttribute("yarns", patternService.getAllYarns());
-        model.addAttribute("userId", model.getAttribute("userId"));
         return "home_form";
     }
 
@@ -42,12 +43,17 @@ public class HomeController {
             return "login";
         }
         model.addAttribute("userId", userId);
+        model.addAttribute("username", username);
         return "redirect:/home";
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
+    public String logout(HttpServletRequest request, SessionStatus status) {
+        status.setComplete(); // clears @SessionAttributes from @ControllerAdvice
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
         return "redirect:/home";
     }
 
