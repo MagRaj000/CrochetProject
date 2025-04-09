@@ -38,6 +38,7 @@
                         <c:forEach items="${library}" var="userData">
                             <tr>
                                 <td>${userData.pattern.name}</td>
+                                <td>${userId}</td>
                                 <td>
                                     <span class="completion-status">${userData.pattern.completed ? 'Completed' : 'In progress'}</span>
                                     <input type="checkbox" data-user-id="1" data-pattern-id="${userData.pattern.id}"

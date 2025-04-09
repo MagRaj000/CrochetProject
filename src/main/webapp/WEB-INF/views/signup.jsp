@@ -9,10 +9,10 @@
     <h6 class="m-0 font-weight-bold text-primary">Create a new account</h6>
   </div>
   <div class="card-body">
-     <!-- Display error messages if any -->
+    <!-- Display error messages if any -->
     <c:if test="${not empty errorMessage}">
       <div class="alert alert-danger" role="alert">
-        ${errorMessage}
+          ${errorMessage}
       </div>
     </c:if>
 

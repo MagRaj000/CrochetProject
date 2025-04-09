@@ -18,6 +18,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/userdata")
 @AllArgsConstructor
+@SessionAttributes("userId")
 public class UserDataController {
     private final UserDataService userDataService;
     private final PatternService patternService;
@@ -48,6 +49,7 @@ public class UserDataController {
 
     @GetMapping("/library/{id}")
     public String getUserLibrary(@PathVariable Long id, Model model) {
+        model.addAttribute("userId", id);
         model.addAttribute("library", userDataService.getUserLibrary(id));
         model.addAttribute("title", "All saved patterns");
         return "user_library";

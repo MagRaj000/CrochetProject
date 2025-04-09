@@ -1,6 +1,5 @@
 package pl.coderslab.crochetproject.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -8,12 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import pl.coderslab.crochetproject.service.CategoryService;
 import pl.coderslab.crochetproject.service.PatternService;
 import pl.coderslab.crochetproject.service.UserService;
 
 @Controller
 @AllArgsConstructor
+@SessionAttributes("userId")
 public class HomeController {
     private final PatternService patternService;
     private final CategoryService categoryService;
@@ -24,6 +25,7 @@ public class HomeController {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("difficulties", patternService.getAllDifficulties());
         model.addAttribute("yarns", patternService.getAllYarns());
+        model.addAttribute("userId", model.getAttribute("userId"));
         return "home_form";
     }
 
@@ -32,16 +34,30 @@ public class HomeController {
         return "login";
     }
 
+    @PostMapping("/login")
+    public String logInUser(@RequestParam String username, @RequestParam String password, Model model) {
+        Long userId = userService.findUserIdByUsernameAndPassword(username, password);
+        if (userId == null) {
+            model.addAttribute("errorMessage", "Username or password is incorrect");
+            return "login";
+        }
+        model.addAttribute("userId", userId);
+        return "redirect:/home";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/home";
+    }
+
     @GetMapping("/signup")
     public String showSignupPage(Model model) {
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String signUpUser(@RequestParam String username,
-                             @RequestParam String password,
-                             @RequestParam String confirmPassword,
-                             Model model, HttpSession session) {
+    public String signUpUser(@RequestParam String username, @RequestParam String password, @RequestParam String confirmPassword, Model model) {
         if (password.length() < 5) {
             model.addAttribute("errorMessage", "Password must be at least 5 characters long");
             return "signup";
@@ -55,7 +71,6 @@ public class HomeController {
             return "signup";
         }
         userService.addUser(username, password);
-        session.setAttribute("userId", userService.findUserIdByUsernameAndPassword(username, password));
-        return "redirect:/home";
+        return "redirect:/login";
     }
 }

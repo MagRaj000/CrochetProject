@@ -9,20 +9,28 @@
         <h6 class="m-0 font-weight-bold text-primary">Log in to your account</h6>
     </div>
     <div class="card-body">
+        <!-- Display error messages if any -->
+        <c:if test="${not empty errorMessage}">
+            <div class="alert alert-danger" role="alert">
+                    ${errorMessage}
+            </div>
+        </c:if>
+
         <form action="${pageContext.request.contextPath}/login" method="post">
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" placeholder="Username" class="form-control"/>
+                <input type="text" name="username" placeholder="Username" class="form-control" required/>
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" placeholder="Your password" class="form-control"/>
+                <input type="password" name="password" placeholder="Your password" class="form-control" required/>
             </div>
             <button type="submit" class="btn btn-primary">Log in</button>
         </form>
         <br>
         <div style="text-align:center;">
-            <p>Don't have an account? <a class="nav-link" href="${pageContext.request.contextPath}/signup">Sign up here</a></p>
+            <p>Don't have an account? <a class="nav-link" href="${pageContext.request.contextPath}/signup">Sign up
+                here</a></p>
         </div>
     </div>
 </div>
